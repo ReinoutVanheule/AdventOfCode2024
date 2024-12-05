@@ -13,7 +13,6 @@ updates = [update.split(',') for update in updates]
 sum1 = 0
 invalid_updates = []
 for update in updates:
-    valid = True
     for a,b in rules:
         if a in update and b in update and update.index(a)>update.index(b):
             invalid_updates.append(update)
