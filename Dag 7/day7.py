@@ -1,17 +1,19 @@
 from aoc import read_input
+from operator import add, mul
 
 # input
 lines = read_input("inputdag7")
-
 lines = dict([line.split(": ") for line in lines])
 lines = {int(key):[int(v) for v in value.split()] for key,value in lines.items()}
 
+pipe = lambda a,b: int(str(a)+str(b))
+operators = [add,mul,pipe]
 def operate(value_to_reach, current_value, remaining, part2 = False):
     if remaining:
-        status_add = operate(value_to_reach, current_value + remaining[0],remaining[1:],part2)
-        status_multiply = operate(value_to_reach, current_value * remaining[0],remaining[1:],part2)
-        status_pipe = operate(value_to_reach, int(str(current_value)+str(remaining[0])), remaining[1:],part2)
-        return status_add or status_multiply or status_pipe and part2
+        for operator in operators[:3 if part2 else 2]:
+            if operate(value_to_reach, operator(current_value,remaining[0]),remaining[1:],part2):
+                return True
+        return False
     else:
         return current_value == value_to_reach
     
