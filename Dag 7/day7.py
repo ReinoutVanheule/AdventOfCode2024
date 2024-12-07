@@ -13,7 +13,6 @@ def operate(value_to_reach, current_value, remaining, part2 = False):
         for operator in operators[:3 if part2 else 2]:
             if operate(value_to_reach, operator(current_value,remaining[0]),remaining[1:],part2):
                 return True
-        return False
     else:
         return current_value == value_to_reach
     
