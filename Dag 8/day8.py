@@ -1,6 +1,6 @@
 from aoc import read_input,list2grid
 from collections import defaultdict
-from itertools import combinations
+from itertools import permutations
 
 # input
 lines = read_input("inputdag8")
@@ -18,10 +18,9 @@ def add_antinode(n1,n2,i):
 
 # part 1
 for key,positions in antennas.items():
-    for p1,p2 in combinations(positions,2):
-        for i in (-1,2):
-            a = add_antinode(p1,p2,i)
-            antinodes.add(a)
+    for p1,p2 in permutations(positions,2):
+        a = add_antinode(p1,p2,-1)
+        antinodes.add(a)
 
 in_grid = lambda a:a[0]>=0 and a[0]<50 and a[1]>=0 and a[1]<50
 antinodes = set(filter(in_grid,antinodes))
@@ -30,19 +29,11 @@ print(len(antinodes))
 # part 2
 antinodes = set()
 for key,positions in antennas.items():
-    all_combinations = list(combinations(positions,2))
-    for p1,p2 in combinations(positions,2):
+    for p1,p2 in permutations(positions,2):
         a = p1
         i = -1
         while in_grid(a):
             antinodes.add(a)
             a = add_antinode(p1,p2,i)
             i -= 1
-            
-        a = p2
-        i = 2
-        while in_grid(a):
-            antinodes.add(a)
-            a = add_antinode(p1,p2,i)
-            i += 1
 print(len(antinodes))
