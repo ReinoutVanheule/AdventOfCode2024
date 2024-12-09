@@ -38,7 +38,7 @@ while len(blocks)>1:
     for i,lenempty in enumerate(free[:idc]):
         if length <= lenempty:
             idd = sum(old_free[:i])+sum(x for x,y in blocks[:i+1])+old_free[i]-free[i]
-            free[i] = lenempty-length
+            free[i] -= length
             break
     result[idd:idd+length] = [idc]*length
         
