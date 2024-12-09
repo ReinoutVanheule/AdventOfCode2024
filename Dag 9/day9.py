@@ -20,7 +20,7 @@ while i >= 0 and insert_indexes:
             insert_indexes.remove(i)
         else:
             result[insert_indexes[0]] = c
-            insert_indexes = insert_indexes[1:]
+            insert_indexes.pop(0)
     i-=1
 
 length_result = sum(map(int,lines[::2]))
@@ -43,5 +43,3 @@ while len(blocks)>1:
     result[idd:idd+length] = [idc]*length
         
 print(sum(a*b for a,b in zip(range(len(result)),result)))
-
-        
