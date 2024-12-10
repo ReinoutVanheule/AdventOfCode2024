@@ -2,6 +2,8 @@ from aoc import read_input,list2grid
 
 # input
 lines = read_input("inputdag10")
+grid ={complex(key[0],key[1]):int(value) for key,value in list2grid(lines).items()}          
+trailheads = [pos for pos,key in grid.items() if key == 0]
 
 def explore(trailhead):
     all_endings = []
@@ -15,8 +17,6 @@ def explore(trailhead):
     move_one_step(trailhead,1)
     return len(set(all_endings)),len(all_endings)
 
-grid ={complex(key[0],key[1]):int(value) for key,value in list2grid(lines).items()}          
-trailheads = [pos for pos,key in grid.items() if key == 0]
 total_part1 = total_part2 = 0
 for trailhead in trailheads:
     a,b = explore(trailhead)
