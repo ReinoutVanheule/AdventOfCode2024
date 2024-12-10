@@ -17,14 +17,10 @@ def explore(trailhead):
     move_one_step(trailhead,1)
     return len(set(all_endings)),len(all_endings)
 
-total_part1 = total_part2 = 0
-for trailhead in trailheads:
-    a,b = explore(trailhead)
-    total_part1 += a
-    total_part2 += b
-   
+scores = [explore(trailhead) for trailhead in trailheads]
+
 # part 1    
-print(total_part1)
+print(sum(a for a,b in scores))
 
 # part 2
-print(total_part2)
+print(sum(b for a,b in scores))
