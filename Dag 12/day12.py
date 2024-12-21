@@ -32,7 +32,6 @@ while all_positions:
 print(price)
 
 # part 2
-
 is_neighbour = lambda pos1,pos2 : True if abs(pos1[0]-pos2[0]) == 1 and pos1[1]-pos2[1] == 0 or abs(pos1[1]-pos2[1]) == 1 and pos1[0]-pos2[0] == 0 else False
 
 def sides(positions):
