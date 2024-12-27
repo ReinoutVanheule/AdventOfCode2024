@@ -47,9 +47,3 @@ for i in range(len(program)):
     existing_combos = new_combos
 
 print(min(int(i,2) for i in existing_combos))
-
-
-    existing_combos = new_combos
-
-print(min(int(i,2) for i in existing_combos))
-
