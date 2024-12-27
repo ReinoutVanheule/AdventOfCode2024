@@ -13,7 +13,7 @@ def run_program(a,program):
         operand = program[index+1]
         new_index = index+2      
         if opcode == 0:
-            register['A'] = register['A']//2**combo(operand)
+            register['A'] >>= combo(operand)
         elif opcode == 1:
             register['B'] ^= operand
         elif opcode == 2:
@@ -26,9 +26,9 @@ def run_program(a,program):
         elif opcode == 5:
             output += str(combo(operand)%8)+','
         elif opcode == 6:
-            register['B'] = register['A']//2**combo(operand)
+            register['B'] = register['A']>>combo(operand)
         elif opcode == 7:
-            register['C'] = register['A']//2**combo(operand)
+            register['C'] = register['A']>>combo(operand)
         index = new_index
     return output
 print(run_program(65804993,program))
@@ -44,6 +44,11 @@ for i in range(len(program)):
             output = run_program(int(a,2),program)
             if program_str[30-2*i:].startswith(output):
                 new_combos.append(a)
+    existing_combos = new_combos
+
+print(min(int(i,2) for i in existing_combos))
+
+
     existing_combos = new_combos
 
 print(min(int(i,2) for i in existing_combos))
